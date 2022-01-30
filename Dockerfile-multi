@@ -1,0 +1,4 @@
+ARG ARCH=
+FROM ${ARCH}nginx
+
+COPY html/  /usr/share/nginx/html/ 
