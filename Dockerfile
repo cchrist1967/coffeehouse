@@ -1,3 +1,3 @@
 FROM nginx
 
-COPY coffeehouse/  /usr/share/nginx/html/ 
+COPY html/  /usr/share/nginx/html/ 
