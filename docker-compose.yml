@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  coffeehouse-ssh: 
+    image: nginx:latest
+    volumes:
+      - coffeehouse-ssh:/usr/share/nginx/html
+#    ports: 
+#      - 8080:80
+    ports:
+      - target: 80
+        published: 8080
+        protocol: tcp
+        mode: host
+    deploy:
+      replicas: 2
+    networks:
+      hostnet: {}
+
+volumes:
+  coffeehouse-ssh:
+    external: true
+    name: coffeehouse-ssh
+
+networks:
+  hostnet:
+    external: true
+    name: bridge
+
