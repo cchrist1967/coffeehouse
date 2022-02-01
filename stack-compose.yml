@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  coffeehouse-ssh: 
+    image: nginx:latest
+    volumes:
+      - coffeehouse-sshfs:/usr/share/nginx/html
+    ports:
+      - target: 80
+        published: 8080
+        protocol: tcp
+        mode: host
+    deploy:
+      replicas: 2
+    networks:
+      hostnet: {}
+
+volumes:
+  coffeehouse-sshfs:
+    external: false
+    name: coffeehouse-sshfs
+    driver: vieux/sshfs:latest
+    driver_opts:
+      sshcmd: pi@swarm-manager:/home/pi/coffeehouse-ssh
+      allow_other: "" 
+      IdentityFile: /root/.ssh/id_rsa
+
+networks:
+  hostnet:
+    external: true
+    name: bridge
+
