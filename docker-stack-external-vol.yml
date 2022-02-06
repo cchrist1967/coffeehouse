@@ -4,8 +4,6 @@ services:
     image: nginx:latest
     volumes:
       - coffeehouse-ssh:/usr/share/nginx/html
-#    ports: 
-#      - 8080:80
     ports:
       - target: 80
         published: 8080

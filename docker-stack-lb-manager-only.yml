@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  coffeehouse-ssh: 
+    image: nginx:latest
+    volumes:
+      - coffeehouse-ssh:/usr/share/nginx/html
+    ports:
+      - target: 80
+        protocol: tcp
+        mode: host
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      replicas: 3
+
+  load-balancer:
+    image: nginx:latest
+    volumes:
+      - ./nginx-container.conf:/etc/nginx/nginx.conf:ro
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    depends_on:
+      - coffeehouse-ssh
+    ports:
+      - "80:80"
+
+volumes:
+  coffeehouse-ssh:
+    external: true
+    name: coffeehouse-ssh
+
+
