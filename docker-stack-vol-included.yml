@@ -10,7 +10,7 @@ services:
         protocol: tcp
         mode: host
     deploy:
-      replicas: 2
+      replicas: 3
     networks:
       hostnet: {}
 
