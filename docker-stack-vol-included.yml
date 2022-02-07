@@ -20,7 +20,7 @@ volumes:
     name: coffeehouse-sshfs
     driver: vieux/sshfs:latest
     driver_opts:
-      sshcmd: pi@swarm-manager:/home/pi/coffeehouse-ssh
+      sshcmd: pi@swarm-manager:/home/pi/coffeehouse/html
       allow_other: "" 
       IdentityFile: /root/.ssh/id_rsa
 
